@@ -140,6 +140,26 @@ jobs:
       - name: Run ClojureCLR Tests
         run: cljr -X:test
 
+  test-squint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Prepare node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "23.x"
+          check-latest: true
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Compile the squint subset
+        run: npm run build-squint
+
+      - name: Run squint tests
+        run: npm run test-squint
+
   # These are disabled for now until we add some parity reporting mechanism. Our priority
   # right now is filling out the test suite and newer dialects have far more failures which
   # get in the way of us writing the tests. Dialect devs are still encouraged to run this

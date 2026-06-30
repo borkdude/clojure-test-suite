@@ -8,11 +8,14 @@
   },
   "scripts": {
     "build": "shadow-cljs release test",
-    "test": "node target/js/node-tests.js"
+    "test": "node target/js/node-tests.js",
+    "build-squint": "squint compile",
+    "test-squint": "node test_squint/run.mjs"
   },
   "author": "jeaye",
   "license": "MPL 2.0",
   "devDependencies": {
-    "shadow-cljs": "^3.3.4"
+    "shadow-cljs": "^3.3.4",
+    "squint-cljs": "^0.14.198"
   }
 }

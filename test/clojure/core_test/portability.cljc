@@ -184,4 +184,25 @@
                      e#)))))
      (catch Exception  _)))
 
+;; squint reads :squint and :cljs, never :clj, so the JVM registration above
+;; never runs under squint. squint extends cljs.test/assert-expr at compile time
+;; via :squint/compile-time, a compile-only reader feature that runs in the
+;; compiler but is not emitted to JS.
+#?(:squint/compile-time
+   (defmethod cljs.test/assert-expr 'p/thrown?
+     [_menv msg form]
+     (let [body (rest form)]
+       `(try
+          (let [result# (do ~@body)]
+            (clojure.test/report {:type :fail
+                                  :message ~msg
+                                  :expected '~form
+                                  :actual result#}))
+          (catch :default e#
+            (clojure.test/report {:type :pass
+                                  :message ~msg
+                                  :expected '~form
+                                  :actual e#})
+            e#)))))
+
 ;; --- Portable exception multimethod. ---

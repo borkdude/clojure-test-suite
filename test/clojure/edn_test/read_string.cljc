@@ -1,17 +1,11 @@
 (ns clojure.edn-test.read-string
-  #?(:cljs (:require-macros [clojure.edn-test.read-string :refer [are-read-as are-thrown]]))
   (:require [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists] :as p]
             [clojure.edn :as edn]
+            [clojure.edn-test.read-string-macros #?(:cljs :refer-macros :default :refer) [are-read-as are-thrown]]
             [clojure.test :refer [are deftest is testing]]))
 
 ;; Many of these tests were largely inspired by the ClojureScript reader test suite:
 ;; https://github.com/clojure/clojurescript/blob/master/src/test/cljs/cljs/reader_test.cljs
-
-(defmacro are-read-as [& pairs]
-  `(are [expected# edn#] (= expected# (edn/read-string edn#)) ~@pairs))
-
-(defmacro are-thrown [& edns]
-  `(are [edn#] (~'p/thrown? (edn/read-string edn#)) ~@edns))
 
 (defn epoch-millis [date]
   #?(:cljr    (.ToUnixTimeMilliseconds (DateTimeOffset. date))

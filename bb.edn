@@ -29,6 +29,11 @@
              :task (do
                      (banner "Running CLJR Tests")
                      (shell "cljr -X:test"))}
+  test-squint {:doc "Runs the squint-compatible subset (test_squint/passing.txt)"
+               :task (do
+                       (banner "Running Squint Tests")
+                       (shell "npx squint compile")
+                       (shell "node test_squint/run.mjs"))}
   test-lpy {:doc  "Run tests in Basilisp"
             :task (do
                    (banner "Running Basilisp Tests")
