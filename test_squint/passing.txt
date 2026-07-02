@@ -33,6 +33,7 @@ clojure.core-test.last
 clojure.core-test.lt
 clojure.core-test.lt-eq
 clojure.core-test.max
+clojure.core-test.min
 clojure.core-test.minus
 clojure.core-test.mod
 clojure.core-test.name
