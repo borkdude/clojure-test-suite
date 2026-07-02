@@ -1,4 +1,5 @@
 (ns clojure.core-test.portability
+  {:squint/compile-time true}
   #?(:lpy (:import time)
      :jank (:include "chrono"))
   (:require #?(:cljs [cljs.test :as t]
@@ -164,7 +165,12 @@
 ;; runtime var. It's a Clojure-side compiler multimethod. It lives in the JVM
 ;; cljs.test namespace and is invoked during macro expansion of cljs.test/is,
 ;; not at runtime in the JS environment.
+;;
+;; Squint runs this same block in its compiler's macroexpansion environment (SCI).
+;; The ^:squint/compile-time key marks it for extraction. The macro environment has the `cljs.test/assert-expr` multimethod.
+;; The inner conditional must list :squint before :clj, such that `Exception` isn't read in squint.
 #?(:clj
+   ^:squint/compile-time
    (try
      (require '[cljs.test])
      (eval '(defmethod cljs.test/assert-expr 'p/thrown?
@@ -182,27 +188,6 @@
                                         :expected '~form
                                         :actual e#})
                      e#)))))
-     (catch Exception  _)))
-
-;; squint reads :squint and :cljs, never :clj, so the JVM registration above
-;; never runs under squint. squint extends cljs.test/assert-expr at compile time
-;; via :squint/compile-time, a compile-only reader feature that runs in the
-;; compiler but is not emitted to JS.
-#?(:squint/compile-time
-   (defmethod cljs.test/assert-expr 'p/thrown?
-     [_menv msg form]
-     (let [body (rest form)]
-       `(try
-          (let [result# (do ~@body)]
-            (clojure.test/report {:type :fail
-                                  :message ~msg
-                                  :expected '~form
-                                  :actual result#}))
-          (catch :default e#
-            (clojure.test/report {:type :pass
-                                  :message ~msg
-                                  :expected '~form
-                                  :actual e#})
-            e#)))))
+     (catch #?(:squint :default :clj Exception) _)))
 
 ;; --- Portable exception multimethod. ---
