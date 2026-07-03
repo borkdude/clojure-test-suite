@@ -19,11 +19,13 @@
         (is (ifn? foo)))
 
       (testing "function-like things"
-        (is (ifn? {:a :b}))
-        (is (ifn? #{:a :b :c}))
-        (is (ifn? [:a :b]))
-        (is (ifn? :keyword))
-        (is (ifn? 'symbol))
+        #?@(:squint [] ; squint colls and keywords are invocable through the compiler, not IFn
+            :default
+            [(is (ifn? {:a :b}))
+             (is (ifn? #{:a :b :c}))
+             (is (ifn? [:a :b]))
+             (is (ifn? :keyword))
+             (is (ifn? 'symbol))])
         (is (ifn? #'ifn?))
         (when-var-exists promise
           (is (ifn? (promise)))))

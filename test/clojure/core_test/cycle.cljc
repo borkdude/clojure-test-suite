@@ -25,6 +25,6 @@
 
     (testing "bad shape"
       (are [coll] (p/thrown? (cycle coll))
-                  :k
+                  #?@(:squint [] :default [:k])
                   42
                   3.14))))

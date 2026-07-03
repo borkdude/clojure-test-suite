@@ -70,6 +70,7 @@
     (testing "bad shape"
       (testing "bad shape - odd number of args"
         (are [coll kvs] #?(; cljs seems to tolerate odd number of args and assume that missing value is nil
+                           :squint  (p/thrown? (apply assoc coll kvs))
                            :cljs    (= (apply assoc coll (conj kvs nil)) (apply assoc coll kvs))
                            ; other implementations throw
                            :default (p/thrown? (apply assoc coll kvs)))

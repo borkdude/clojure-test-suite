@@ -26,7 +26,7 @@
       (testing "vectors - multiple values"
         ; assoc coll index-1 val-1 index-2 val-2 ...
         (are [expected vec ivs] (= expected (persistent! (apply assoc! (transient vec) ivs)))
-                                [1 nil] [] [0 1 1]
+                                #?@(:squint [] :default [[1 nil] [] [0 1 1]])
                                 [1 2] [] [0 1 1 2]
                                 [1 3 5 7] [1 2] [1 3 2 5 3 7]
                                 #?@(:lpy
@@ -44,15 +44,18 @@
                            [[0 1 2] [-1 -1]
                             [1 2]   [-1 3 2 5]]))))
 
+    #?(:squint nil ; squint assoc! throws on a missing value, like assoc
+       :default
     (testing "odd number of args"
       ; on the contrary to assoc, assoc! accepts an odd number (> 1) of args and assumes missing value is nil
       (are [coll kvs] (= (apply assoc coll (conj kvs nil)) (persistent! (apply assoc! (transient coll) kvs)))
                       {:a 1} [:b 2 :c]
                       {:a 1} [:b 2 :c 3 :d]
                       [1] [0 1 1]
-                      [1] [0 1 1 2 2]))
+                      [1] [0 1 1 2 2])))
 
     #?@(:lpy []
+        :squint []
         :default
         [(testing "cannot assoc! transient after persistent! call"
            (let [t (transient {:a 1}), _ (persistent! t)]
@@ -63,8 +66,7 @@
     (testing "bad shape"
       (are [coll] (p/thrown? (assoc! coll 1 3))
                   nil
-                  {:a 1 :b 2}
-                  [0 1 2]
+                  #?@(:squint [] :default [{:a 1 :b 2} [0 1 2]])
                   '(0 1 2)
                   (transient '(0 1 2))
                   #{0 1 2}

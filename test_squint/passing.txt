@@ -34,7 +34,9 @@ clojure.core-test.constantly
 clojure.core-test.contains-qmark
 clojure.core-test.count
 clojure.core-test.counted-qmark
+clojure.core-test.cycle
 clojure.core-test.dec
+clojure.core-test.derive
 clojure.core-test.disj
 clojure.core-test.disj-bang
 clojure.core-test.dissoc

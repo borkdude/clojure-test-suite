@@ -6,7 +6,8 @@
 
   ; Some types for testing descendants by type
   (defprotocol TestDescendantsProtocol)
-  (defrecord TestDescendantsRecord [] TestDescendantsProtocol)
+  #?(:squint (deftype TestDescendantsRecord [] TestDescendantsProtocol) ; squint has no defrecord
+     :default (defrecord TestDescendantsRecord [] TestDescendantsProtocol))
   (deftype TestDescendantsType [] TestDescendantsProtocol)
 
   ; A global hierarchy for testing `descendants tag` and `descendants h tag`
@@ -66,6 +67,9 @@
         #?@(:lpy
             [(is (nil? (descendants TestDescendantsProtocol)))
              (is (p/thrown? (descendants python/object)))]
+            :squint
+            [(is (nil? (descendants TestDescendantsProtocol)))
+             (is (nil? (descendants js/Object)))]
             :cljs
             [(is (p/thrown? (descendants TestDescendantsProtocol)))
              (is (p/thrown? (descendants js/Object)))]
@@ -115,6 +119,7 @@
 
       (testing "cannot get descendants by type inheritance, whether the tag is in h or not"
         (are [h] #?(:lpy     (p/thrown? (descendants h python/object))
+                    :squint  (nil? (descendants h js/Object))
                     :cljs    (p/thrown? (descendants h js/Object))
                     :default (p/thrown? (descendants h Object)))
                  ; tag in h

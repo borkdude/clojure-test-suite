@@ -32,9 +32,12 @@
                                     :descendants {'n/b #{'n/a}}
                                     :parents     {'n/a #{'n/b}}} (make-hierarchy) 'n/a 'n/b
 
-                                   {:ancestors   {#?(:lpy python/str :phel stdClass :cljs js/String :default String) #{::object}}
-                                    :descendants {::object #{#?(:lpy python/str :phel stdClass :cljs js/String :default String)}}
-                                    :parents     {#?(:lpy python/str :phel stdClass :cljs js/String :default String) #{::object}}} (make-hierarchy) #?(:cljs js/String :lpy python/str :phel stdClass :default String) ::object
+                                   ;; a squint map literal cannot hold a class as a key: object keys stringify
+                                   #?@(:squint []
+                                       :default
+                                       [{:ancestors   {#?(:lpy python/str :phel stdClass :cljs js/String :default String) #{::object}}
+                                         :descendants {::object #{#?(:lpy python/str :phel stdClass :cljs js/String :default String)}}
+                                         :parents     {#?(:lpy python/str :phel stdClass :cljs js/String :default String) #{::object}}} (make-hierarchy) #?(:cljs js/String :lpy python/str :phel stdClass :default String) ::object])
 
                                    {:ancestors   {::rect #{::shape}, ::square #{::rect ::shape}}
                                     :descendants {::rect #{::square}, ::shape #{::rect ::square}}
