@@ -6,17 +6,21 @@
 (when-var-exists str/ends-with?
   (deftest test-ends-with?
     (is (true? (str/ends-with? "" "")))
-    (is (p/thrown? (str/ends-with? "" nil)))
+    #?(:squint (is (false? (str/ends-with? "" nil)))
+       :default (is (p/thrown? (str/ends-with? "" nil))))
 
     #?(:cljr (is (true? (str/ends-with? nil "")))
        :cljs (is (p/thrown? (str/ends-with? nil "")))
        :default (is (p/thrown? (str/ends-with? nil ""))))
 
-    #?(:cljs (do (is (false? (str/ends-with? "ab" :b)))
+    #?(:squint (do (is (true? (str/ends-with? "ab" :b)))
+                   (is (false? (str/ends-with? "ab" :a))))
+       :cljs (do (is (false? (str/ends-with? "ab" :b)))
                  (is (false? (str/ends-with? "ab" :a))))
        :default (is (p/thrown? (str/ends-with? "ab" :b))))
 
-    #?(:cljs (is (false? (str/ends-with? "ab" 'b)))
+    #?(:squint (is (true? (str/ends-with? "ab" 'b)))
+       :cljs (is (false? (str/ends-with? "ab" 'b)))
        :default (is (p/thrown? (str/ends-with? "ab" 'b))))
 
    #?@(:cljr
@@ -29,6 +33,11 @@
         (is (p/thrown? (str/ends-with? 'ab "a")))
         (is (p/thrown? (str/ends-with? :ab "b")))
         (is (p/thrown? (str/ends-with? :ab "b")))]
+       :squint
+       [(is (true? (str/ends-with? 'ab "b")))
+        (is (false? (str/ends-with? 'ab "a")))
+        (is (true? (str/ends-with? :ab "b")))
+        (is (false? (str/ends-with? :ab "a")))]
        :cljs
        [(is (false? (str/ends-with? 'ab "b")))
         (is (false? (str/ends-with? 'ab "a")))

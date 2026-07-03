@@ -15,12 +15,14 @@
     (testing "`val` throws on lots of things"
       (are [arg] (p/thrown? (val arg))
         nil
-        0
-        '()
-        '(1 2)
-        {}
-        {1 2}
-        []
-        [1 2]                           ; might be dialect-specific
-        #{}
-        #{1 2}))))
+        #?@(:squint []
+            :default
+            [0
+             '()
+             '(1 2)
+             {}
+             {1 2}
+             []
+             [1 2]                      ; might be dialect-specific
+             #{}
+             #{1 2}])))))

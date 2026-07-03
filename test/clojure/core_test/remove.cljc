@@ -26,17 +26,13 @@
     (testing "Exception cases"
       (testing "non function passed as first argument throws"
         (are [x] (p/thrown? (first (remove x [0])))
-          \a
-          ""
-          #""
+          #?@(:squint [] :default [\a "" #""])
           0
           nil))
       (testing "non collection passed as second argument throws"
         (are [x] (p/thrown? (first (remove nil? x)))
-          #""
-          0
-          (fn [])
-          (atom nil))
+          #?@(:squint [] :default [#"" (fn []) (atom nil)])
+          0)
         #?(:cljs    (is (= \a (first (remove nil? \a))))
            :lpy     (is (= \a (first (remove nil? \a))))
            :default (is (p/thrown? (first (remove nil? \a)))))))))

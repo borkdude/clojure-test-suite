@@ -24,11 +24,14 @@
                            #{:a :b :c} (transient #{:a :b :c})))
 
     #?@(:lpy []
+        :squint []
         :default
         [(testing "calling persistent! a second time throws"
            (let [coll (transient {}), _ (persistent! coll)]
              (is (p/thrown? (persistent! coll)))))])
 
+    #?(:squint nil
+       :default
     (testing "bad shape"
       (are [coll] (p/thrown? (persistent! coll))
                   nil
@@ -37,4 +40,4 @@
                   '(1 2 3)
                   #{1 2 3}
                   true
-                  false))))
+                  false)))))

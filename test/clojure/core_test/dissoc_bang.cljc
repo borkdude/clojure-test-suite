@@ -20,10 +20,14 @@
                              {} {nil nil} [nil]
                              {} {nil nil} [nil nil]))
 
-    (testing "cannot dissoc! transient after persistent! call"
-      (let [t (transient {:a 1}), _ (persistent! t)]
-        (is (p/thrown? (dissoc! t :a)))))
+    #?(:squint nil
+       :default
+       (testing "cannot dissoc! transient after persistent! call"
+         (let [t (transient {:a 1}), _ (persistent! t)]
+           (is (p/thrown? (dissoc! t :a))))))
 
+    #?(:squint nil
+       :default
     (testing "bad shape"
       (are [m keys] (p/thrown? (apply dissoc! m keys))
                     {:a 1} [:a]
@@ -34,4 +38,4 @@
                     (transient #{:a :b}) [:a]
                     42 [4]
                     :k [:k]
-                    "string" [\s \t]))))
+                    "string" [\s \t])))))

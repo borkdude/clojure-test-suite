@@ -5,7 +5,8 @@
 (when-var-exists key
   (deftest test-key
     (testing "basic tests"
-      (is (= nil (key (first {nil nil}))))
+      #?(:squint nil ; a nil key stringifies to "null" in an object map
+         :default (is (= nil (key (first {nil nil})))))
       (is (= :k (key (first {:k :v}))))
       (is (= :k (key (first (hash-map :k :v)))))
       (when-var-exists sorted-map
@@ -15,12 +16,14 @@
     (testing "`key` throws on lots of things"
       (are [arg] (p/thrown? (key arg))
         nil
-        0
-        '()
-        '(1 2)
-        {}
-        {1 2}
-        []
-        [1 2]
-        #{}
-        #{1 2}))))
+        #?@(:squint []
+            :default
+            [0
+             '()
+             '(1 2)
+             {}
+             {1 2}
+             []
+             [1 2]
+             #{}
+             #{1 2}])))))

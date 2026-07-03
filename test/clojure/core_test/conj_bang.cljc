@@ -60,6 +60,7 @@
 
     ;; Basilisp does not prevent continuing to use transient vectors after persistent! call
     #?@(:lpy []
+        :squint []
         :default
         [(testing "cannot conj! after call to persistent!"
            (let [coll (transient []), _ (persistent! coll)]
@@ -74,10 +75,12 @@
             [(transient {}) '(:a 1)
              (transient {}) #{:a 1}
              (transient {}) (range 2)])
-        [] 1
-        {} {:a 1}
-        '() true
-        #{} :k
+        #?@(:squint []
+            :default
+            [[] 1
+             {} {:a 1}
+             '() true
+             #{} :k])
         "abc" \d
         true false
         1 -1

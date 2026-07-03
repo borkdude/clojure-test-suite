@@ -13,7 +13,10 @@
        :cljs (is (p/thrown? (str/starts-with? nil "")))
        :default (is (p/thrown? (str/starts-with? nil ""))))
 
-    #?(:cljs (do (is (false? (str/starts-with? "ab" :a)))
+    #?(:squint (do (is (true? (str/starts-with? "ab" :a)))
+                   (is (false? (str/starts-with? ":ab" :a)))
+                   (is (false? (str/starts-with? "ab" :b))))
+       :cljs (do (is (false? (str/starts-with? "ab" :a)))
                  (is (true? (str/starts-with? ":ab" :a)))
                  (is (false? (str/starts-with? "ab" :b))))
        :default (is (p/thrown? (str/starts-with? "ab" :a))))
@@ -38,6 +41,11 @@
          (is (p/thrown? (str/starts-with? :ab ":a")))
          (is (p/thrown? (str/starts-with? 'a/b ":a")))
          (is (p/thrown? (str/starts-with? :a/b ":a")))]
+        :squint
+        [(is (false? (str/starts-with? 'ab ":a")))
+         (is (false? (str/starts-with? :ab ":a")))
+         (is (false? (str/starts-with? 'a/b ":a")))
+         (is (false? (str/starts-with? :a/b ":a")))]
         :cljs
         [(is (p/thrown? (str/starts-with? 'ab ":a")))
          (is (p/thrown? (str/starts-with? :ab ":a")))

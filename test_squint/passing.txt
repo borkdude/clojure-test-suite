@@ -28,6 +28,7 @@ clojure.core-test.comment
 clojure.core-test.compare
 clojure.core-test.concat
 clojure.core-test.conj
+clojure.core-test.conj-bang
 clojure.core-test.cons
 clojure.core-test.constantly
 clojure.core-test.contains-qmark
@@ -37,6 +38,7 @@ clojure.core-test.dec
 clojure.core-test.disj
 clojure.core-test.disj-bang
 clojure.core-test.dissoc
+clojure.core-test.dissoc-bang
 clojure.core-test.distinct
 clojure.core-test.doseq
 clojure.core-test.double
@@ -70,6 +72,7 @@ clojure.core-test.integer-qmark
 clojure.core-test.interleave
 clojure.core-test.interpose
 clojure.core-test.juxt
+clojure.core-test.key
 clojure.core-test.keys
 clojure.core-test.keyword
 clojure.core-test.keyword-qmark
@@ -110,6 +113,7 @@ clojure.core-test.parse-uuid
 clojure.core-test.partial
 clojure.core-test.partition
 clojure.core-test.peek
+clojure.core-test.persistent-bang
 clojure.core-test.plus
 clojure.core-test.pop
 clojure.core-test.pos-int-qmark
@@ -124,6 +128,7 @@ clojure.core-test.random-uuid
 clojure.core-test.realized-qmark
 clojure.core-test.reduce
 clojure.core-test.rem
+clojure.core-test.remove
 clojure.core-test.remove-watch
 clojure.core-test.repeat
 clojure.core-test.repeatedly
@@ -134,6 +139,7 @@ clojure.core-test.run-bang
 clojure.core-test.second
 clojure.core-test.select-keys
 clojure.core-test.seq
+clojure.core-test.seq-qmark
 clojure.core-test.seqable-qmark
 clojure.core-test.sequential-qmark
 clojure.core-test.set
@@ -147,6 +153,7 @@ clojure.core-test.sort
 clojure.core-test.sort-by
 clojure.core-test.sorted-qmark
 clojure.core-test.star
+clojure.core-test.string-qmark
 clojure.core-test.subs
 clojure.core-test.subvec
 clojure.core-test.symbol
@@ -160,6 +167,7 @@ clojure.core-test.underive
 clojure.core-test.unsigned-bit-shift-right
 clojure.core-test.update
 clojure.core-test.uuid-qmark
+clojure.core-test.val
 clojure.core-test.vals
 clojure.core-test.vec
 clojure.core-test.vector
@@ -173,7 +181,9 @@ clojure.core-test.zero-qmark
 clojure.core-test.zipmap
 clojure.string-test.blank-qmark
 clojure.string-test.capitalize
+clojure.string-test.ends-with-qmark
 clojure.string-test.escape
 clojure.string-test.lower-case
 clojure.string-test.reverse
+clojure.string-test.starts-with-qmark
 clojure.string-test.upper-case

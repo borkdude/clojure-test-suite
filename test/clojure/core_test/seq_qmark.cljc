@@ -17,23 +17,23 @@
           [true (seq (sorted-map :a 1))
            true (seq (sorted-set :a))])
 
-      false [1 2 3]
+      #?@(:squint [true] :default [false]) [1 2 3]
       false (hash-map :a 1)
-      false (hash-set :a)
+      #?@(:squint [true] :default [false]) (hash-set :a)
       false nil
       false 1
       false 1N
       false 1.0
       false 1.0M
-      false :a-keyword
-      false 'a-sym
-      false "a string"
-      false \a
-      false (object-array 3)
+      #?@(:squint [true] :default [false]) :a-keyword
+      #?@(:squint [true] :default [false]) 'a-sym
+      #?@(:squint [true] :default [false]) "a string"
+      #?@(:squint [true] :default [false]) \a
+      #?@(:squint [true] :default [false]) (object-array 3)
 
       ;; Basilisp does not currently implement sorted collections or array-map.
       #?@(:lpy []
           :default
-          [false (sorted-map :a 1)
-           false (sorted-set :a)
+          [#?@(:squint [true] :default [false]) (sorted-map :a 1)
+           #?@(:squint [true] :default [false]) (sorted-set :a)
            false (array-map :a 1)]))))

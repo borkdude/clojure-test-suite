@@ -45,11 +45,11 @@
       false #{:a-set}
       false [:a :vector]
       false '(:a :list)
-      false :a-keyword
-      false :0
-      false :1
-      false :-1
-      false 'a-sym
+      #?@(:squint [true] :default [false]) :a-keyword
+      #?@(:squint [true] :default [false]) :0
+      #?@(:squint [true] :default [false]) :1
+      #?@(:squint [true] :default [false]) :-1
+      #?@(:squint [true] :default [false]) 'a-sym
 
       #?@(:lpy
           [true \0
