@@ -11,7 +11,7 @@
       false -1
       false 0.0
       false -1.0
-      false r/max-double
+      #?@(:squint [true] :default [false]) r/max-double
       false r/min-double
       false ##Inf
       false ##-Inf

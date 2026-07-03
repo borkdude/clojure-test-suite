@@ -34,5 +34,5 @@
       #?@(:lpy []
           :default
           [false (sorted-set :a)
-           false (seq (sorted-map :a 1))
+           #?@(:squint [true] :default [false]) (seq (sorted-map :a 1))
            false (seq (sorted-set :a))]))))

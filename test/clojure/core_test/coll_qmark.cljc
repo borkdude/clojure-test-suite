@@ -31,4 +31,4 @@
       false 'a-sym
       false "a string"
       false \a
-      false (object-array 3))))
+      #?@(:squint [true] :default [false]) (object-array 3))))

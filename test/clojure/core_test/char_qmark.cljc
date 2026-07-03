@@ -65,7 +65,7 @@
       true  \A
       true  \space
       false :a-keyword
-      false :0
-      false :1
+      #?@(:squint [true] :default [false]) :0
+      #?@(:squint [true] :default [false]) :1
       false :-1
       false 'a-sym)))

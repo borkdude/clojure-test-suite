@@ -20,7 +20,7 @@
       false {:a 1 :b 2}
       false #{:a :b}
       false "abc"
-      false (to-array [1 2 3])
+      #?@(:squint [true] :default [false]) (to-array [1 2 3])
       false :a
       false 'a
       false 1

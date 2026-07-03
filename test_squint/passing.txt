@@ -21,11 +21,14 @@ clojure.core-test.boolean
 clojure.core-test.boolean-qmark
 clojure.core-test.butlast
 clojure.core-test.case
+clojure.core-test.char-qmark
+clojure.core-test.coll-qmark
 clojure.core-test.comment
 clojure.core-test.concat
 clojure.core-test.conj
 clojure.core-test.constantly
 clojure.core-test.contains-qmark
+clojure.core-test.counted-qmark
 clojure.core-test.dec
 clojure.core-test.dissoc
 clojure.core-test.doseq
@@ -52,6 +55,8 @@ clojure.core-test.identical-qmark
 clojure.core-test.identity
 clojure.core-test.inc
 clojure.core-test.int
+clojure.core-test.int-qmark
+clojure.core-test.integer-qmark
 clojure.core-test.interleave
 clojure.core-test.interpose
 clojure.core-test.last
@@ -60,6 +65,7 @@ clojure.core-test.list-qmark
 clojure.core-test.lt
 clojure.core-test.lt-eq
 clojure.core-test.make-hierarchy
+clojure.core-test.map-qmark
 clojure.core-test.max
 clojure.core-test.merge
 clojure.core-test.min
@@ -84,6 +90,7 @@ clojure.core-test.partition
 clojure.core-test.peek
 clojure.core-test.plus
 clojure.core-test.pop
+clojure.core-test.pos-int-qmark
 clojure.core-test.pos-qmark
 clojure.core-test.quot
 clojure.core-test.rand
@@ -101,6 +108,7 @@ clojure.core-test.rseq
 clojure.core-test.run-bang
 clojure.core-test.second
 clojure.core-test.seq
+clojure.core-test.sequential-qmark
 clojure.core-test.set-qmark
 clojure.core-test.shuffle
 clojure.core-test.some-qmark

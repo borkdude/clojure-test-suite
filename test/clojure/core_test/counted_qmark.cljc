@@ -10,7 +10,7 @@
         ;; Basilisp lists are actually not counted.
         #?(:lpy [] :default ['(1 2 3)]) ; surprising for traditional Lispers
         #{1 2 3}
-        #?@(:cljs [nil] :default [])    ; CLJS nil is `counted?`
+        #?@(:squint [] :cljs [nil] :default [])    ; CLJS nil is `counted?`, squint nil is not
         (hash-map :a 1 :b 2 :c 3)
         ;; Basilisp does not currently implement sorted collections.
         #?@(:lpy []
@@ -26,8 +26,8 @@
         1.0M
         :a-keyword
         'a-sym
-        #?@(:cljs [] :default [nil])    ; surprising since `(count nil)` = 0
+        #?@(:squint [nil] :cljs [] :default [nil])    ; surprising since `(count nil)` = 0
         ;; `count` works on strings, arrays, and other Java
         ;; collections, but they are not `counted?`.
         "a string"
-        (object-array 3)))))
+        #?@(:squint [] :default [(object-array 3)])))))
