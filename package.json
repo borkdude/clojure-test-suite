@@ -16,6 +16,6 @@
   "license": "MPL 2.0",
   "devDependencies": {
     "shadow-cljs": "^3.3.4",
-    "squint-cljs": "^0.14.200"
+    "squint-cljs": "^0.14.201"
   }
 }
