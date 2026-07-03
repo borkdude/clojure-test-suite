@@ -9,7 +9,8 @@
    ;; numbers with no fractional part.
    ;; Basilisp does not have character types, but will print floats
    ;; with trailing decimal place.
-   (is (= #?(:cljs "nil \"a\" \"string\" \"A\" \" \" 1 17 [:a :b] {:c :d} #{:e}"
+   (is (= #?(:squint "nil \"a\" \"string\" \"A\" \" \" 1 17 [\"a\" \"b\"] {:c \"d\"} #{\"e\"}"
+             :cljs "nil \"a\" \"string\" \"A\" \" \" 1 17 [:a :b] {:c :d} #{:e}"
              :lpy "nil \"a\" \"string\" \"A\" \" \" 1 17.0 [:a :b] {:c :d} #{:e}"
              :default "nil \"a\" \"string\" \\A \\space 1 17.0 [:a :b] {:c :d} #{:e}")
           (pr-str nil "a" "string" \A \space 1 17.0 [:a :b] {:c :d} #{:e})))))

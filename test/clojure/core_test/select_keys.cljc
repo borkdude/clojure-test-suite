@@ -21,6 +21,9 @@
       #?@(:cljr [(is (= {} (select-keys "" [:a])))
                  (is (= {}  (select-keys 0 [:a])))
                  (is (p/thrown? (select-keys {} :a)))]
+          :squint [(is (= {} (select-keys "" [:a])))
+                   (is (= {} (select-keys 0 [:a])))
+                   (is (= {} (select-keys {} :a)))]
           :cljs [(is (= {} (select-keys "" [:a])))
                  (is (= {} (select-keys 0 [:a])))
                  (is (p/thrown? (select-keys {} :a)))]

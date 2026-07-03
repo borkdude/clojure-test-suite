@@ -20,6 +20,9 @@
       #?@(:lpy [(is (= #{\space} (set \space)))
                 (is (p/thrown? (set 1)))
                 (is (p/thrown? (set :a)))]
+          :squint [(is (= #{\space} (set \space)))
+                   (is (p/thrown? (set 1)))
+                   (is (= #{"a"} (set :a)))]
           :cljs [(is (= #{\space} (set \space)))
                  (is (p/thrown? (set 1)))
                  (is (p/thrown? (set :a)))]

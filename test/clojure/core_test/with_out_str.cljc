@@ -19,8 +19,10 @@
 (when-var-exists with-out-str
   (deftest test-with-out-str
     (is (= (platform-newlines
-            (str "some sample :text here" \newline
-                 "[:a :b] {:c :d} #{:e} (:f)" \newline))
+            #?(:squint (str "some sample text here" \newline
+                            "[\"a\" \"b\"] {:c \"d\"} #{\"e\"} (\"f\")" \newline)
+               :default (str "some sample :text here" \newline
+                             "[:a :b] {:c :d} #{:e} (:f)" \newline)))
            (with-out-str
              (println "some" "sample" :text 'here)
              (prn [:a :b] {:c :d} #{:e} '(:f)))))

@@ -66,7 +66,7 @@
                              {:a 0 :b 1} 0 2
                              (range 3) 0 2
                              "012" 0 2
-                             (transient [0 1 2]) 0 2))
+                             #?@(:squint [] :default [(transient [0 1 2]) 0 2])))
       (testing "indices that cannot be cast to numbers"
         #?(:cljs    "cljs can actually cast these to numbers"
            :default (are [vec start end] (p/thrown? (subvec vec start end))

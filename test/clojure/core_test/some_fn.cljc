@@ -16,7 +16,8 @@
       (is (= true ((some-fn neg? #(> % 10) #(= % 3) #(= % 5)) 1 2 5))))
 
     (testing "supports ifn"
-      (is (= 3 ((some-fn #{1 2} #{3 4}) 5 3 7))))
+      #?(:squint nil
+         :default (is (= 3 ((some-fn #{1 2} #{3 4}) 5 3 7)))))
 
     (testing "short-circuits"
       (is (= true ((some-fn even? (fn [_] (assert false "pred should have been short-circuited"))) 2)))

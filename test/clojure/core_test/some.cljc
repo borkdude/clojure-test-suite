@@ -62,6 +62,6 @@
 
     (testing "bad shape"
       (are [coll] (p/thrown? (some identity coll))
-                  :some
+                  #?@(:squint [] :default [:some])
                   42
                   3.14))))

@@ -24,6 +24,7 @@
           (is (= (get avec 1) (get (transient avec) 1)))
           (is (= (contains? avec 1) (contains? (transient avec) 1)))
           #?@(:cljr [(is (p/thrown? ((transient avec) 1)))] ;; arity exception
+              :squint [(is (p/thrown? ((transient avec) 1)))]
               :default [(is (= (avec 1) ((transient avec) 1)))])
           (is (= (count avec) (count (transient avec))))))
 
@@ -32,16 +33,20 @@
           (is (= (get amap :x) (get (transient amap) :x)))
           (is (= (contains? amap :x) (contains? (transient amap) :x)))
           (is (= (:x amap) (:x (transient amap))))
-          (is (= (amap :x) ((transient amap) :x)))
+          #?(:squint (is (p/thrown? ((transient amap) :x)))
+             :default (is (= (amap :x) ((transient amap) :x))))
           (is (= (count amap) (count (transient amap))))))
 
       (testing "for transient set"
         (let [someset #{42 "life"}]
           (is (= (get someset 42) (get (transient someset) 42)))
           (is (= (contains? someset 42) (contains? (transient someset) 42)))
-          (is (= (someset 42) ((transient someset) 42)))
+          #?(:squint (is (p/thrown? ((transient someset) 42)))
+             :default (is (= (someset 42) ((transient someset) 42))))
           (is (= (count someset) (count (transient someset)))))))
 
+    #?(:squint nil
+       :default
     (testing "calling non-bang interface throws"
       (testing "for transient vector"
         (let [avec [1 2 3]]
@@ -58,13 +63,15 @@
       (testing "for transient set"
         (let [someset #{42 "life"}]
           (is (p/thrown? (disj (transient someset) 42)))
-          (is (p/thrown? (conj (transient someset) 43))))))
+          (is (p/thrown? (conj (transient someset) 43)))))))
 
-    (testing "calling transient a second time throws"
-      (are [a-transient] (p/thrown? (transient a-transient))
-                         (transient [1 2 3])
-                         (transient {:x 1 :y -1})
-                         (transient #{42 "life"})))
+    #?(:squint nil
+       :default
+       (testing "calling transient a second time throws"
+         (are [a-transient] (p/thrown? (transient a-transient))
+                            (transient [1 2 3])
+                            (transient {:x 1 :y -1})
+                            (transient #{42 "life"}))))
 
     (testing "bad input"
       (are [v] (p/thrown? (transient v))
@@ -85,10 +92,11 @@
                :kw
                :ns/kw
                #(+ 1 %)
-               '(1 2 3)
+               #?@(:squint [] :default ['(1 2 3)])
                ;; Basilisp does not currently implement sorted collections.
                #?@(:lpy []
                    :jank [] ;; jank supports transient for sorted-set / sorted-map
+                   :squint []
                    :default [(sorted-set :i :j :k)
                              (sorted-map :hp 99)])
                #?@(:cljs [] ;; thrown? range error in clojurescript causes Javacript heap OOM

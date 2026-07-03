@@ -29,5 +29,6 @@
      (are [in ex] (= (apply zipmap in) ex)
        [(range)  '("a" "b")]    {0 "a" 1 "b"}))
    (testing "Bad inputs"
-     (is (p/thrown? (zipmap :not-seqable [1 2 3])))
+     #?(:squint nil
+        :default (is (p/thrown? (zipmap :not-seqable [1 2 3]))))
      (is (p/thrown? (zipmap 123          [1 2 3]))))))

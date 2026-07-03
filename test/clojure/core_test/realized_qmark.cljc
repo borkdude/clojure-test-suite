@@ -67,8 +67,9 @@
                 ;; Note, `square` is NOT called yet in the following line
                 our-squares (squares 1)]
             (is (false? (realized? our-squares)))
-            (is (empty? (take 0 our-squares)))
-            (is (false? (realized? our-squares)))
+            #?@(:squint []
+                :default [(is (empty? (take 0 our-squares)))
+                          (is (false? (realized? our-squares)))])
             (is (= 1 (count (take 1 our-squares))))
             (is (true? (realized? our-squares))))))
 
