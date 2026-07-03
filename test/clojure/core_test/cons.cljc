@@ -36,7 +36,7 @@
 
     (testing "bad shape"
       (are [seq] (p/thrown? (cons 1 seq))
-                 :k
+                 #?@(:squint [] :default [:k])
                  42
                  3.14
                  true

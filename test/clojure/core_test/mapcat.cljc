@@ -50,6 +50,6 @@
     (testing "non-seqable second arg"
       (is (p/thrown? (mapcat identity 5))))
     (testing "non-function first arg"
-      (is (p/thrown? (mapcat 42 [1 2]))))
+      (is (p/thrown? #?(:squint (doall (mapcat 42 [1 2])) :default (mapcat 42 [1 2])))))
     (testing "non-concatable return value"
       (is (p/thrown? (doall (mapcat identity (range 2))))))))

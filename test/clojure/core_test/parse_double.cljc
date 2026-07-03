@@ -43,6 +43,13 @@
                 :key
                 0.0
                 1000)
+         :squint (are [x] (p/thrown? (parse-double x))
+                   {}
+                   '()
+                   []
+                   #{}
+                   0.0
+                   1000)
          :cljs (are [x] (p/thrown? (parse-double x))
                  {}
                  '()

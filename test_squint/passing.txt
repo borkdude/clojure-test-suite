@@ -26,10 +26,12 @@ clojure.core-test.coll-qmark
 clojure.core-test.comment
 clojure.core-test.concat
 clojure.core-test.conj
+clojure.core-test.cons
 clojure.core-test.constantly
 clojure.core-test.contains-qmark
 clojure.core-test.counted-qmark
 clojure.core-test.dec
+clojure.core-test.disj
 clojure.core-test.dissoc
 clojure.core-test.doseq
 clojure.core-test.double
@@ -40,6 +42,7 @@ clojure.core-test.drop-while
 clojure.core-test.empty-qmark
 clojure.core-test.even-qmark
 clojure.core-test.false-qmark
+clojure.core-test.find
 clojure.core-test.first
 clojure.core-test.float
 clojure.core-test.fn-qmark
@@ -59,6 +62,8 @@ clojure.core-test.int-qmark
 clojure.core-test.integer-qmark
 clojure.core-test.interleave
 clojure.core-test.interpose
+clojure.core-test.juxt
+clojure.core-test.keyword
 clojure.core-test.last
 clojure.core-test.lazy-seq
 clojure.core-test.list-qmark
@@ -66,6 +71,7 @@ clojure.core-test.lt
 clojure.core-test.lt-eq
 clojure.core-test.make-hierarchy
 clojure.core-test.map-qmark
+clojure.core-test.mapcat
 clojure.core-test.max
 clojure.core-test.merge
 clojure.core-test.min
@@ -85,6 +91,9 @@ clojure.core-test.nth
 clojure.core-test.number-qmark
 clojure.core-test.odd-qmark
 clojure.core-test.or
+clojure.core-test.parse-double
+clojure.core-test.parse-long
+clojure.core-test.parse-uuid
 clojure.core-test.partial
 clojure.core-test.partition
 clojure.core-test.peek

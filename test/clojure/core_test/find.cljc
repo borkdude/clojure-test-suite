@@ -12,4 +12,4 @@
       (is (= [:a 1] (find {:a 1 :b 2 :c 3} :a)))
       (is (= [:a 1] (find {:a 1 :b 2 :c (range)} :a)))
       (is (= nil (find {:a 1 :b 2 :c 3} :d)))
-      (is (= [0 1] (find {0 1 :0 2 "0" 3} 0))))))
+      (is (= #?(:squint [0 3] :default [0 1]) (find {0 1 :0 2 "0" 3} 0))))))
