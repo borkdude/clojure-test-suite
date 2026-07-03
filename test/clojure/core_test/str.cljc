@@ -74,18 +74,18 @@
       "0"            "0"
       "1"            "1"
       "-1"           "-1"
-      "{:a :map}"    {:a :map} ; keep this one item because it's unordered
-      "#{:a-set}"    #{:a-set} ; keep this one item because it's unordered
-      "[:a :vector]" [:a :vector]
-      "(:a :list)"   '(:a :list)
+      #?@(:squint ["[object Object]"] :default ["{:a :map}"])    {:a :map} ; keep this one item because it's unordered
+      #?@(:squint ["[object Set]"] :default ["#{:a-set}"])    #{:a-set} ; keep this one item because it's unordered
+      #?@(:squint ["a,vector"] :default ["[:a :vector]"]) [:a :vector]
+      #?@(:squint ["a,list"] :default ["(:a :list)"])   '(:a :list)
       "0"            \0
       "1"            \1
       "A"            \A
       " "            \space
-      ":a-keyword"   :a-keyword
-      ":0"           :0
-      ":1"           :1
-      ":-1"          :-1
+      #?@(:squint ["a-keyword"] :default [":a-keyword"])   :a-keyword
+      #?@(:squint ["0"] :default [":0"])           :0
+      #?@(:squint ["1"] :default [":1"])           :1
+      #?@(:squint ["-1"] :default [":-1"])          :-1
       "a-sym"        'a-sym)
 
     ;; No arg and var arg versions
