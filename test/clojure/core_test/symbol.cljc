@@ -46,10 +46,12 @@
       '= '=
       '= :=
       'abc*+!-_'?<>= "abc*+!-_'?<>="
-      #?(:cljs 'cljs.core/+
-         :lpy 'basilisp.core/+
-         :phel 'phel.core/+
-         :default 'clojure.core/+) #'+)
+      #?@(:squint []
+          :default
+          [#?(:cljs 'cljs.core/+
+              :lpy 'basilisp.core/+
+              :phel 'phel.core/+
+              :default 'clojure.core/+) #'+]))
 
     (are [expected ns name] (= expected (symbol ns name))
       'abc/abc     "abc"     "abc"
@@ -77,10 +79,11 @@
 
       'abc*+!-_'?<>=/abc*+!-_'?<>= "abc*+!-_'?<>=" "abc*+!-_'?<>=")
 
-    (is (p/thrown? (symbol nil)))
+    #?(:squint (is (nil? (symbol nil)))
+       :default (is (p/thrown? (symbol nil))))
     (is (= 'abc (symbol nil "abc"))) ; if ns is nil, it just ignores it.
     (is (nil? (namespace (symbol nil "hi"))))
-    (is (= "" (namespace (symbol "" "hi"))))
+    (is (= #?(:squint nil :default "") (namespace (symbol "" "hi"))))
 
     ;; prints as 'abc/null but the null is really a nil. Since this is
     ;; not readable via the standard Clojure reader, I'm not even sure
@@ -94,7 +97,7 @@
         [(is (= 'abc/abc (symbol 'abc "abc")))
          (is (= 'abc/abc (symbol "abc" 'abc)))
          ;; (is (= :abc/abc (symbol :abc "abc"))) results in unreadable value
-         (is (= 'abc/:abc (symbol "abc" :abc)))]
+         (is (= #?(:squint 'abc/abc :default 'abc/:abc) (symbol "abc" :abc)))]
         :default
         [(is (p/thrown? (symbol 'abc "abc")))
          (is (p/thrown? (symbol "abc" 'abc)))

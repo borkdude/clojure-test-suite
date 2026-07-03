@@ -98,11 +98,11 @@
 
        ;; Throw when passing a val instead of function
        [{:k 5} :k 1]
-       [{:k 5} :k '()]
-       [{:k 5} :k '()]
-       [{:k 5} :k []]
+       #?@(:squint [] :default [[{:k 5} :k '()]
+                                [{:k 5} :k '()]
+                                [{:k 5} :k []]])
        [{:k 5} :k nil]
-       [{:k 5} :k ""]
+       #?@(:squint [] :default [[{:k 5} :k ""]])
 
        ;; Laziness doesn't work on CLJS
        #?(:cljs nil

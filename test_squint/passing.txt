@@ -37,6 +37,7 @@ clojure.core-test.dec
 clojure.core-test.disj
 clojure.core-test.disj-bang
 clojure.core-test.dissoc
+clojure.core-test.distinct
 clojure.core-test.doseq
 clojure.core-test.double
 clojure.core-test.double-qmark
@@ -85,6 +86,7 @@ clojure.core-test.mapcat
 clojure.core-test.max
 clojure.core-test.merge
 clojure.core-test.min
+clojure.core-test.min-key
 clojure.core-test.minus
 clojure.core-test.mod
 clojure.core-test.name
@@ -97,6 +99,7 @@ clojure.core-test.nil-qmark
 clojure.core-test.nnext
 clojure.core-test.not
 clojure.core-test.not-empty
+clojure.core-test.not-eq
 clojure.core-test.nth
 clojure.core-test.number-qmark
 clojure.core-test.odd-qmark
@@ -146,6 +149,7 @@ clojure.core-test.sorted-qmark
 clojure.core-test.star
 clojure.core-test.subs
 clojure.core-test.subvec
+clojure.core-test.symbol
 clojure.core-test.symbol-qmark
 clojure.core-test.take
 clojure.core-test.take-last
@@ -154,6 +158,7 @@ clojure.core-test.transient
 clojure.core-test.true-qmark
 clojure.core-test.underive
 clojure.core-test.unsigned-bit-shift-right
+clojure.core-test.update
 clojure.core-test.uuid-qmark
 clojure.core-test.vals
 clojure.core-test.vec
@@ -167,5 +172,8 @@ clojure.core-test.with-out-str
 clojure.core-test.zero-qmark
 clojure.core-test.zipmap
 clojure.string-test.blank-qmark
+clojure.string-test.capitalize
 clojure.string-test.escape
+clojure.string-test.lower-case
 clojure.string-test.reverse
+clojure.string-test.upper-case

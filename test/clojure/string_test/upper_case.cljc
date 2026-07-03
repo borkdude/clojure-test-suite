@@ -27,6 +27,13 @@
          'asdf
          'asdf/asdf)
 
+       :squint
+       (are [expected v] (= expected (str/upper-case v))
+         "ASDF"      :asdf
+         "ASDF/ASDF" :asdf/asdf
+         "ASDF"      'asdf
+         "ASDF/ASDF" 'asdf/asdf)
+
        :cljs
        (are [v] (p/thrown? (str/upper-case v))
          :asdf

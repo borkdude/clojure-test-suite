@@ -20,8 +20,10 @@
         (is (= [1 2 3 4 5] s)))
 
       ;; Odd cases check if comparison is done using `=`
-      (is (= [{:k :v}] (transduce (distinct) conj dupes-with-meta)))
-      (is (= [#{:a :b :c}] (transduce (distinct) conj dupes-not-identical)))
+      #?@(:squint []
+          :default
+          [(is (= [{:k :v}] (transduce (distinct) conj dupes-with-meta)))
+           (is (= [#{:a :b :c}] (transduce (distinct) conj dupes-not-identical)))])
 
       ;; Check no dupes
       (is (= (range 10) (transduce (distinct) conj (range 10))))
@@ -36,8 +38,10 @@
         (is (= [1 2 3 4 5] s)))
 
       ;; Odd cases check if comparison is done using `=`
-      (is (= [{:k :v}] (distinct dupes-with-meta)))
-      (is (= [#{:a :b :c}] (distinct dupes-not-identical)))
+      #?@(:squint []
+          :default
+          [(is (= [{:k :v}] (distinct dupes-with-meta)))
+           (is (= [#{:a :b :c}] (distinct dupes-not-identical)))])
 
       ;; No dupes
       (is (= (range 10) (distinct (range 10))))

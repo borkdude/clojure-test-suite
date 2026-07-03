@@ -99,6 +99,12 @@
              [1] identity [[2] [1] [3]]
              #{1} identity [#{1} #{2}]
              #{2} identity [#{2} #{1} #{3}]]
+            :squint
+            ["x" identity ["x" "y"]
+             "x" identity ["y" "x" "z"]
+             [1] identity [[1] [2]]
+             [1] identity [[2] [1] [3]]
+             nil identity  [nil nil]]
             :cljs
             ["x" identity ["x" "y"]
              "x" identity ["y" "x" "z"]
