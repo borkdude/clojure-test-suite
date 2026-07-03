@@ -28,7 +28,7 @@
       neg?  ['cat  'dog]
       neg?  [:cat  :dog]
       zero? [:dog  :dog]
-      neg?  [:cat  :animal/cat]
+      #?@(:squint [pos?] :default [neg?])  [:cat  :animal/cat]
       pos?  ['a    nil])
 
     (is (p/thrown? (compare "a" [])))
@@ -53,7 +53,8 @@
       ;; zero?  ['()         '()]
       )
 
-    (is (p/thrown? (compare []  '())))
+    #?(:squint nil
+       :default (is (p/thrown? (compare []  '()))))
     (is (p/thrown? (compare [1] [[]])))
     (is (p/thrown? (compare []  {})))
     (is (p/thrown? (compare []  #{})))

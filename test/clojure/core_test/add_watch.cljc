@@ -68,10 +68,14 @@
           (add-watch a :e err)
           (add-watch r :e err)
           (update!)
-          (is (contains? (set (keyed :e @state))
-                         {:key :e :ref a :old 4 :new 5 :tester :err}))
-          (is (contains? (set (keyed :e @state))
-                         {:key :e :ref r :old 14 :new 15 :tester :err})))))
+          #?@(:squint
+              [(is (some #(= % {:key :e :ref a :old 4 :new 5 :tester :err}) (keyed :e @state)))
+               (is (some #(= % {:key :e :ref r :old 14 :new 15 :tester :err}) (keyed :e @state)))]
+              :default
+              [(is (contains? (set (keyed :e @state))
+                              {:key :e :ref a :old 4 :new 5 :tester :err}))
+               (is (contains? (set (keyed :e @state))
+                              {:key :e :ref r :old 14 :new 15 :tester :err}))]))))
 
     #?@(:phel []
         :cljs []

@@ -2,6 +2,7 @@
 # Run by test_squint/run.mjs. Add more as squint gains parity.
 clojure.core-test.abs
 clojure.core-test.aclone
+clojure.core-test.add-watch
 clojure.core-test.and
 clojure.core-test.any-qmark
 clojure.core-test.apply
@@ -24,11 +25,13 @@ clojure.core-test.case
 clojure.core-test.char-qmark
 clojure.core-test.coll-qmark
 clojure.core-test.comment
+clojure.core-test.compare
 clojure.core-test.concat
 clojure.core-test.conj
 clojure.core-test.cons
 clojure.core-test.constantly
 clojure.core-test.contains-qmark
+clojure.core-test.count
 clojure.core-test.counted-qmark
 clojure.core-test.dec
 clojure.core-test.disj
@@ -40,8 +43,10 @@ clojure.core-test.drop
 clojure.core-test.drop-last
 clojure.core-test.drop-while
 clojure.core-test.empty-qmark
+clojure.core-test.eq
 clojure.core-test.even-qmark
 clojure.core-test.false-qmark
+clojure.core-test.ffirst
 clojure.core-test.find
 clojure.core-test.first
 clojure.core-test.float
@@ -67,9 +72,11 @@ clojure.core-test.keyword
 clojure.core-test.last
 clojure.core-test.lazy-seq
 clojure.core-test.list-qmark
+clojure.core-test.long
 clojure.core-test.lt
 clojure.core-test.lt-eq
 clojure.core-test.make-hierarchy
+clojure.core-test.map
 clojure.core-test.map-qmark
 clojure.core-test.mapcat
 clojure.core-test.max

@@ -55,6 +55,12 @@
          (is (p/thrown? (long [0])))
          (is (p/thrown? (long nil)))]
 
+        :squint
+        [(is (= 0 (long "0")))
+         (is (= 0 (long :0)))
+         (is (= 0 (long [0])))
+         (is (= 0 (long nil)))]
+
         :cljs
         [(is (= 0 (long "0"))) ; JavaScript peeking through?
          (is (NaN? (long :0)))

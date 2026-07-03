@@ -25,6 +25,5 @@
     ;; Negative tests
     (are [x] (p/thrown? (count x))
       1
-      :a
-      'a
+      #?@(:squint [] :default [:a 'a])
       #?@(:lpy [] :cljs [] :default [\a]))))

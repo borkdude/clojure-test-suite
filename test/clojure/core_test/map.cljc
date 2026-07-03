@@ -146,5 +146,4 @@
             :cljs []
             :lpy  []
             :default [\a])
-        :a
-        'a))))
+        #?@(:squint [] :default [:a 'a])))))

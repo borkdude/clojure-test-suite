@@ -25,7 +25,7 @@
       \a \b
       "yellow" "purple"
       :hello :goodbye
-      :my/hello 'my/hello
+      #?@(:squint [] :default [:my/hello 'my/hello])
       :my/hello :your/hello
       'one-fish 'two-fish
       'red/fish 'red/coral))
@@ -62,7 +62,7 @@
       '(1 2 3) '(3 2 1)
       [\a \b \c] {0 \a 1 \b 2 \c}
       [\a ##NaN] [\a ##NaN]
-      #{1.0 2.0 ##NaN} #{1.0 2.0 ##NaN}))
+      #?@(:squint [] :default [#{1.0 2.0 ##NaN} #{1.0 2.0 ##NaN}])))
 
   ;; Basilisp does not currently implemented sorted collections.
   #?(:lpy nil

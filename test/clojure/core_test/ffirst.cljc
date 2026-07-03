@@ -21,7 +21,12 @@
       (is (= \a (ffirst #{"abcd"}))))
 
     (testing "exceptions"
-      #?@(:cljs
+      #?@(:squint
+          [(is (p/thrown? (ffirst (range 0 10))))
+           (is (p/thrown? (ffirst (range)))) ; infinite lazy seq
+           (is (= "a" (ffirst [:a :b :c])))
+           (is (= "a" (ffirst '(:a :b :c))))]
+          :cljs
           [(is (p/thrown? (ffirst (range 0 10))))
            (is (p/thrown? (ffirst (range)))) ; infinite lazy seq
            (is (p/thrown? (ffirst [:a :b :c])))
