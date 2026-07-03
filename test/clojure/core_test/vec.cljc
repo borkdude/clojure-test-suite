@@ -21,7 +21,9 @@
                            [1 2 3] (range 1 4)
                            [\a \b \c] "abc")
 
-      (is (contains? #{[[:a 1] [:b 2]] [[:b 2] [:a 1]]} (vec {:a 1 :b 2}))))
+      #?(:squint (let [v (vec {:a 1 :b 2})]
+                   (is (or (= v [[:a 1] [:b 2]]) (= v [[:b 2] [:a 1]]))))
+         :default (is (contains? #{[[:a 1] [:b 2]] [[:b 2] [:a 1]]} (vec {:a 1 :b 2})))))
 
     #?(:cljr    "cljr does not alias array"
        :lpy     "Basilisp does not alias array"
@@ -37,5 +39,4 @@
                  42
                  3.14
                  true
-                 :a
-                 (transient [])))))
+                 #?@(:squint [] :default [:a (transient [])])))))

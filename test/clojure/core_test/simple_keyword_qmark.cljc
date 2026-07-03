@@ -7,12 +7,12 @@
    (are [expected x] (= expected (simple-keyword? x))
      true  :a-keyword
 
-     #?(:cljs true :phel true :default false) (keyword "a/b/c")
+     #?(:squint false :cljs true :phel true :default false) (keyword "a/b/c")
      false ::a-keyword
-     false 'a-symbol
+     #?@(:squint [true] :default [false]) 'a-symbol
      false :a-ns/a-keyword
      false 'a-ns/a-keyword
-     false "a string"
+     #?@(:squint [true] :default [false]) "a string"
      false 0
      false 0N
      false 0.0

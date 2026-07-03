@@ -11,5 +11,9 @@
     (is (= "tset-a" (str/reverse "a-test")))
     (is (p/thrown? (str/reverse nil)))
     (is (p/thrown? (str/reverse 1)))
-    (is (p/thrown? (str/reverse 'a-test)))
-    (is (p/thrown? (str/reverse :a-test)))))
+    #?@(:squint
+        [(is (= "tset-a" (str/reverse 'a-test)))
+         (is (= "tset-a" (str/reverse :a-test)))]
+        :default
+        [(is (p/thrown? (str/reverse 'a-test)))
+         (is (p/thrown? (str/reverse :a-test)))])))

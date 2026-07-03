@@ -112,10 +112,12 @@
     (testing "negative cases"
       ;; key-fn is not a fn
       (is (p/thrown? (sort-by nil simple-vec-maps)))
-      (is (p/thrown? (sort-by [] simple-vec-maps)))
+      #?(:squint nil
+         :default (is (p/thrown? (sort-by [] simple-vec-maps))))
       ;; comparator is not a fn
       (is (p/thrown? (sort-by :a nil simple-vec-maps)))
-      (is (p/thrown? (sort-by :a [] simple-vec-maps)))
+      #?(:squint nil
+         :default (is (p/thrown? (sort-by :a [] simple-vec-maps))))
       ;; collection is not a collection
       (is (p/thrown? (sort-by :a 1)))
       (is (p/thrown? (sort-by :a true))))

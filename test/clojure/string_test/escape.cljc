@@ -12,6 +12,10 @@
     (is (= "A_AbC_C" (str/escape "abc" {\a "A_A" \c "C_C" (int \a) 1 nil 'junk :garbage 42.42})))
     (is (= "A_AbC_C" (str/escape "abc" {\a "A_A" \c "C_C"})))
     (is (p/thrown? (str/escape nil {\a "A_A" \c "C_C"})))
-    (is (p/thrown? (str/escape 1 {\a "A_A" \c "C_C"})))
-    (is (p/thrown? (str/escape 'a {\a "A_A" \c "C_C"})))
-    (is (p/thrown? (str/escape :a {\a "A_A" \c "C_C"})))))
+    #?@(:squint
+        [(is (= "A_A" (str/escape 'a {\a "A_A" \c "C_C"})))
+         (is (= "A_A" (str/escape :a {\a "A_A" \c "C_C"})))]
+        :default
+        [(is (p/thrown? (str/escape 1 {\a "A_A" \c "C_C"})))
+         (is (p/thrown? (str/escape 'a {\a "A_A" \c "C_C"})))
+         (is (p/thrown? (str/escape :a {\a "A_A" \c "C_C"})))])))

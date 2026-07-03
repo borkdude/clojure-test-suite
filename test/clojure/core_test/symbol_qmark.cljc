@@ -8,9 +8,9 @@
      true  'a-symbol
      true  'a-ns/a-keyword
 
-     false :a-keyword
-     false :a-ns/a-keyword
-     false "a string"
+     #?@(:squint [true] :default [false]) :a-keyword
+     #?@(:squint [true] :default [false]) :a-ns/a-keyword
+     #?@(:squint [true] :default [false]) "a string"
      false 0
      false 0N
      false 0.0

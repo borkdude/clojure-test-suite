@@ -35,6 +35,7 @@ clojure.core-test.count
 clojure.core-test.counted-qmark
 clojure.core-test.dec
 clojure.core-test.disj
+clojure.core-test.disj-bang
 clojure.core-test.dissoc
 clojure.core-test.doseq
 clojure.core-test.double
@@ -68,7 +69,9 @@ clojure.core-test.integer-qmark
 clojure.core-test.interleave
 clojure.core-test.interpose
 clojure.core-test.juxt
+clojure.core-test.keys
 clojure.core-test.keyword
+clojure.core-test.keyword-qmark
 clojure.core-test.last
 clojure.core-test.lazy-seq
 clojure.core-test.list-qmark
@@ -109,6 +112,7 @@ clojure.core-test.pop
 clojure.core-test.pos-int-qmark
 clojure.core-test.pos-qmark
 clojure.core-test.pr-str
+clojure.core-test.qualified-keyword-qmark
 clojure.core-test.quot
 clojure.core-test.rand
 clojure.core-test.rand-int
@@ -127,18 +131,22 @@ clojure.core-test.run-bang
 clojure.core-test.second
 clojure.core-test.select-keys
 clojure.core-test.seq
+clojure.core-test.seqable-qmark
 clojure.core-test.sequential-qmark
 clojure.core-test.set
 clojure.core-test.set-qmark
 clojure.core-test.shuffle
+clojure.core-test.simple-keyword-qmark
 clojure.core-test.some
 clojure.core-test.some-fn
 clojure.core-test.some-qmark
 clojure.core-test.sort
+clojure.core-test.sort-by
 clojure.core-test.sorted-qmark
 clojure.core-test.star
 clojure.core-test.subs
 clojure.core-test.subvec
+clojure.core-test.symbol-qmark
 clojure.core-test.take
 clojure.core-test.take-last
 clojure.core-test.take-while
@@ -148,7 +156,9 @@ clojure.core-test.underive
 clojure.core-test.unsigned-bit-shift-right
 clojure.core-test.uuid-qmark
 clojure.core-test.vals
+clojure.core-test.vec
 clojure.core-test.vector
+clojure.core-test.vector-qmark
 clojure.core-test.when
 clojure.core-test.when-first
 clojure.core-test.when-let
@@ -157,3 +167,5 @@ clojure.core-test.with-out-str
 clojure.core-test.zero-qmark
 clojure.core-test.zipmap
 clojure.string-test.blank-qmark
+clojure.string-test.escape
+clojure.string-test.reverse

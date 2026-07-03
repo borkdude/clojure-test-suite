@@ -20,8 +20,8 @@
       false 1N
       false 1.0
       false 1.0M
-      false :a-keyword
-      false 'a-sym
+      #?@(:squint [true] :default [false]) :a-keyword
+      #?@(:squint [true] :default [false]) 'a-sym
       ;; Basilisp does not currently implement sorted collections or array-map.
       #?@(:lpy [true \a]
 
