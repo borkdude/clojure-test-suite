@@ -15,6 +15,7 @@
   "author": "jeaye",
   "license": "MPL 2.0",
   "devDependencies": {
+    "immutable": "^5.1.9",
     "shadow-cljs": "^3.3.4",
     "squint-cljs": "^0.14.202"
   }

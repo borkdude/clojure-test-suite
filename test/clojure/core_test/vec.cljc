@@ -1,5 +1,6 @@
 (ns clojure.core-test.vec
   (:require [clojure.test :refer [deftest testing is are]]
+            #?@(:squint [[clojure.core-test.squint-immutable :as sqim]])
             [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists] :as p]))
 
 (when-var-exists vec
@@ -21,8 +22,8 @@
                            [1 2 3] (range 1 4)
                            [\a \b \c] "abc")
 
-      #?(:squint (let [v (vec {:a 1 :b 2})]
-                   (is (or (= v [[:a 1] [:b 2]]) (= v [[:b 2] [:a 1]]))))
+      #?(:squint (is (contains? (sqim/iset #{[[:a 1] [:b 2]] [[:b 2] [:a 1]]})
+                                (sqim/->imm (vec {:a 1 :b 2}))))
          :default (is (contains? #{[[:a 1] [:b 2]] [[:b 2] [:a 1]]} (vec {:a 1 :b 2})))))
 
     #?(:cljr    "cljr does not alias array"

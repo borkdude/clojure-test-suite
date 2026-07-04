@@ -1,5 +1,6 @@
 (ns clojure.core-test.add-watch
   (:require [clojure.test :as t :refer [deftest is testing]]
+            #?@(:squint [[clojure.core-test.squint-immutable :as sqim]])
             [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists sleep]]))
 
 (when-var-exists add-watch
@@ -69,8 +70,10 @@
           (add-watch r :e err)
           (update!)
           #?@(:squint
-              [(is (some #(= % {:key :e :ref a :old 4 :new 5 :tester :err}) (keyed :e @state)))
-               (is (some #(= % {:key :e :ref r :old 14 :new 15 :tester :err}) (keyed :e @state)))]
+              [(is (contains? (sqim/iset (keyed :e @state))
+                              (sqim/->imm {:key :e :ref a :old 4 :new 5 :tester :err})))
+               (is (contains? (sqim/iset (keyed :e @state))
+                              (sqim/->imm {:key :e :ref r :old 14 :new 15 :tester :err})))]
               :default
               [(is (contains? (set (keyed :e @state))
                               {:key :e :ref a :old 4 :new 5 :tester :err}))
