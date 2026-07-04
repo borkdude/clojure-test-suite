@@ -3,9 +3,13 @@
 clojure.core-test.abs
 clojure.core-test.aclone
 clojure.core-test.add-watch
+clojure.core-test.ancestors
 clojure.core-test.and
 clojure.core-test.any-qmark
 clojure.core-test.apply
+clojure.core-test.assoc
+clojure.core-test.assoc-bang
+clojure.core-test.atom
 clojure.core-test.binding
 clojure.core-test.bit-and
 clojure.core-test.bit-and-not
@@ -37,6 +41,7 @@ clojure.core-test.counted-qmark
 clojure.core-test.cycle
 clojure.core-test.dec
 clojure.core-test.derive
+clojure.core-test.descendants
 clojure.core-test.disj
 clojure.core-test.disj-bang
 clojure.core-test.dissoc
@@ -48,6 +53,7 @@ clojure.core-test.double-qmark
 clojure.core-test.drop
 clojure.core-test.drop-last
 clojure.core-test.drop-while
+clojure.core-test.empty
 clojure.core-test.empty-qmark
 clojure.core-test.eq
 clojure.core-test.even-qmark
@@ -67,6 +73,7 @@ clojure.core-test.hash-map
 clojure.core-test.hash-set
 clojure.core-test.identical-qmark
 clojure.core-test.identity
+clojure.core-test.ifn-qmark
 clojure.core-test.inc
 clojure.core-test.int
 clojure.core-test.int-qmark
@@ -109,6 +116,7 @@ clojure.core-test.nth
 clojure.core-test.number-qmark
 clojure.core-test.odd-qmark
 clojure.core-test.or
+clojure.core-test.parents
 clojure.core-test.parse-double
 clojure.core-test.parse-long
 clojure.core-test.parse-uuid
@@ -163,6 +171,7 @@ clojure.core-test.symbol
 clojure.core-test.symbol-qmark
 clojure.core-test.take
 clojure.core-test.take-last
+clojure.core-test.take-nth
 clojure.core-test.take-while
 clojure.core-test.transient
 clojure.core-test.true-qmark
