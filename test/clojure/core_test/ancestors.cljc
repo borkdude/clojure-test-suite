@@ -10,8 +10,7 @@
 
   ; Some custom types for testing ancestors by type inheritance
   (defprotocol TestAncestorsProtocol)
-  #?(:squint (deftype TestAncestorsRecord [] TestAncestorsProtocol) ; squint has no defrecord
-     :default (defrecord TestAncestorsRecord [] TestAncestorsProtocol))
+  (defrecord TestAncestorsRecord [] TestAncestorsProtocol)
   (deftype TestAncestorsType [] TestAncestorsProtocol)
 
   ; A global hierarchy for testing `ancestors tag` and `ancestors h tag`

@@ -6,8 +6,7 @@
 
   ; Some custom types for testing parents by type inheritance
   (defprotocol TestParentsProtocol)
-  #?(:squint (deftype TestParentsRecord [] TestParentsProtocol) ; squint has no defrecord
-     :default (defrecord TestParentsRecord [] TestParentsProtocol))
+  (defrecord TestParentsRecord [] TestParentsProtocol)
   (deftype TestParentsType [] TestParentsProtocol)
 
   ; A global hierarchy for testing `parents tag` and `parents h tag`

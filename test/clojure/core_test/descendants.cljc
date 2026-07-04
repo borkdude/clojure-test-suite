@@ -6,8 +6,7 @@
 
   ; Some types for testing descendants by type
   (defprotocol TestDescendantsProtocol)
-  #?(:squint (deftype TestDescendantsRecord [] TestDescendantsProtocol) ; squint has no defrecord
-     :default (defrecord TestDescendantsRecord [] TestDescendantsProtocol))
+  (defrecord TestDescendantsRecord [] TestDescendantsProtocol)
   (deftype TestDescendantsType [] TestDescendantsProtocol)
 
   ; A global hierarchy for testing `descendants tag` and `descendants h tag`
