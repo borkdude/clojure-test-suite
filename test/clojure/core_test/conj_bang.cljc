@@ -1,5 +1,6 @@
 (ns clojure.core-test.conj-bang
   (:require [clojure.test :refer [are deftest is testing]]
+            #?@(:squint [[clojure.core-test.squint-immutable :as sqim]])
             [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists] :as p]))
 
 (when-var-exists conj!
@@ -84,4 +85,9 @@
         "abc" \d
         true false
         1 -1
-        (range 3) -1))))
+        (range 3) -1))
+
+    #?(:squint
+       (testing "immutable.js through the squint protocols"
+         (is (= (sqim/iset #{1 2 3}) (persistent! (conj! (transient (sqim/iset #{1 2})) 3))))
+         (is (= (sqim/->imm {:a 1 :b 2}) (persistent! (conj! (transient (sqim/->imm {:a 1})) [:b 2]))))))))

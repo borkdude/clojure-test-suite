@@ -1,5 +1,6 @@
 (ns clojure.core-test.disj
   (:require [clojure.test :refer [are deftest is testing]]
+            #?@(:squint [[clojure.core-test.squint-immutable :as sqim]])
             [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists] :as p]))
 
 (when-var-exists disj
@@ -31,4 +32,8 @@
                       {:a 1} [:a]
                       42 [42]
                       3.14 [3.14]
-                      "string" [\s \t]))))
+                      "string" [\s \t]))
+    #?(:squint
+       (testing "immutable.js through the squint protocols"
+         (is (= (sqim/iset #{[3 3]}) (disj (sqim/iset #{[1 1] 2 [3 3]}) (sqim/->imm [1 1]) 2)))
+         (is (= 1 (count (disj (sqim/iset #{1 2}) 1))))))))

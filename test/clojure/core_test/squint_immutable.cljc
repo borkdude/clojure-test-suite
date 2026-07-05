@@ -26,7 +26,19 @@
        IEmptyableCollection
        (-empty [m] (.clear m))
        IEquiv
-       (-equiv [m other] (.equals m other)))
+       (-equiv [m other] (.equals m other))
+       IEditableCollection
+       (-as-transient [m] (.asMutable m))
+       ITransientAssociative
+       (-assoc! [m k v] (.set m k v))
+       ITransientMap
+       (-dissoc! [m k] (.remove m k))
+       ITransientCollection
+       (-conj! [m x]
+         (if (vector? x)
+           (.set m (nth x 0) (nth x 1))
+           (reduce (fn [acc e] (.set acc (nth e 0) (nth e 1))) m (seq x))))
+       (-persistent! [m] (.asImmutable m)))
 
      (extend-type im/List
        ILookup
@@ -41,7 +53,12 @@
        IEmptyableCollection
        (-empty [l] (.clear l))
        IEquiv
-       (-equiv [l other] (.equals l other)))
+       (-equiv [l other] (.equals l other))
+       IEditableCollection
+       (-as-transient [l] (.asMutable l))
+       ITransientCollection
+       (-conj! [l x] (.push l x))
+       (-persistent! [l] (.asImmutable l)))
 
      (extend-type im/Set
        IAssociative
@@ -53,7 +70,16 @@
        IEmptyableCollection
        (-empty [s] (.clear s))
        IEquiv
-       (-equiv [s other] (.equals s other)))
+       (-equiv [s other] (.equals s other))
+       ISet
+       (-disjoin [s x] (.remove s x))
+       IEditableCollection
+       (-as-transient [s] (.asMutable s))
+       ITransientSet
+       (-disjoin! [s x] (.remove s x))
+       ITransientCollection
+       (-conj! [s x] (.add s x))
+       (-persistent! [s] (.asImmutable s)))
 
      (defn ->imm
        "Recursively converts vectors, sets, maps and seqs to immutable.js

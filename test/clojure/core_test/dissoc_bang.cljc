@@ -1,5 +1,6 @@
 (ns clojure.core-test.dissoc-bang
   (:require [clojure.test :refer [are deftest is testing]]
+            #?@(:squint [[clojure.core-test.squint-immutable :as sqim]])
             [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists] :as p]))
 
 (when-var-exists dissoc!
@@ -38,4 +39,8 @@
                     (transient #{:a :b}) [:a]
                     42 [4]
                     :k [:k]
-                    "string" [\s \t])))))
+                    "string" [\s \t])))
+
+    #?(:squint
+       (testing "immutable.js through the squint protocols"
+         (is (= (sqim/->imm {:b 2}) (persistent! (dissoc! (transient (sqim/->imm {:a 1 :b 2})) :a))))))))

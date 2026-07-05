@@ -1,5 +1,6 @@
 (ns clojure.core-test.transient
   (:require [clojure.test :as t :refer [are deftest is testing]]
+            #?@(:squint [[clojure.core-test.squint-immutable :as sqim]])
             [clojure.core-test.portability #?(:cljs :refer-macros :default :refer) [when-var-exists] :as p]))
 
 (when-var-exists transient
@@ -100,4 +101,12 @@
                    :default [(sorted-set :i :j :k)
                              (sorted-map :hp 99)])
                #?@(:cljs [] ;; thrown? range error in clojurescript causes Javacript heap OOM
-                   :default [(range)])))))
+                   :default [(range)])))
+
+    #?(:squint
+       (testing "immutable.js through the squint protocols"
+         (let [p (sqim/->imm {:a 1})
+               t (transient p)]
+           (assoc! t :b 2)
+           (is (= 1 (count p)))
+           (is (= 2 (count (persistent! t)))))))))
