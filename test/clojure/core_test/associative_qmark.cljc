@@ -23,8 +23,8 @@
       #?@(:phel [true (seq "ab") ; PHP arrays are associative
                  true (to-array [1 2 3])]
           :default
-          [false (seq "ab")             ; seq
-           false (to-array [1 2 3])])
+          [#?@(:squint [true] :default [false]) (seq "ab") ; a char array in squint
+           #?@(:squint [true] :default [false]) (to-array [1 2 3])])
       false :a
       false 'a
       false 1
