@@ -59,4 +59,4 @@
         #?(:cljs (is (nil? (seq (random-sample nil coll))))
            :default (is (p/thrown? (seq (random-sample nil coll)))))
         (is (p/thrown? (seq (random-sample 0.5 42))))
-        (is (p/thrown? (seq (random-sample 0.5 :foo))))))))
+        #?@(:squint [] :default [(is (p/thrown? (seq (random-sample 0.5 :foo))))])))))

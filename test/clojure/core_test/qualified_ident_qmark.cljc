@@ -7,7 +7,7 @@
    (are [expected x] (= expected (qualified-ident? x))
      ;; CLJS will fail to read 'a/b/c and :a/b/c even with reader conditionals,
      ;; there is similar behavior with dialect specific regex literals
-     #?(:cljs false :default true) (keyword "a/b/c")
+     #?(:squint true :cljs false :default true) (keyword "a/b/c")
      true  (symbol "a/b/c")
      true  ::a-keyword
      true  :a-ns/a-keyword

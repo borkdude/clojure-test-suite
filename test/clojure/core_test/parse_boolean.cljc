@@ -34,6 +34,14 @@
                 '()
                 #{}
                 [])
+         :squint (are [x] (p/thrown? (parse-boolean x))
+                   nil
+                   0
+                   0.0
+                   {}
+                   '()
+                   #{}
+                   [])
          :cljs (are [x] (p/thrown? (parse-boolean x))
                  nil
                  0

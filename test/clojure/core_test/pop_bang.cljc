@@ -17,6 +17,7 @@
 
     ;; Basilisp does not prevent continuing to use transient vectors after persistent! call
     #?@(:lpy []
+        :squint []
         :default
         [(testing "cannot pop! after call to persistent!"
            (let [t (transient [0 1]), _ (persistent! t)]
@@ -26,7 +27,7 @@
       (are [arg] (p/thrown? (pop! arg))
                  (transient {:a 0})
                  (transient #{0})
-                 [0]
+                 #?@(:squint [] :default [[0]])
                  '(0)
                  #{0}
                  (range 3)

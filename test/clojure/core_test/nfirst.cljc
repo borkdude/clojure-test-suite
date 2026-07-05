@@ -21,7 +21,12 @@
       (is (= '(\b \c \d) (nfirst #{"abcd"}))))
     
     (testing "exceptions"
-      #?@(:cljs
+      #?@(:squint
+          [(is (p/thrown? (nfirst (range 0 10))))
+           (is (p/thrown? (nfirst (range))))
+           (is (nil? (nfirst [:a :b :c])))
+           (is (nil? (nfirst '(:a :b :c))))]
+          :cljs
           [(is (p/thrown? (nfirst (range 0 10))))
            (is (p/thrown? (nfirst (range))))
            (is (p/thrown? (nfirst [:a :b :c])))

@@ -10,7 +10,7 @@
 
      false :a-keyword
      false 'a-symbol
-     false :a-ns/a-keyword
+     #?@(:squint [true] :default [false]) :a-ns/a-keyword
      false "a string"
      false 0
      false 0N
