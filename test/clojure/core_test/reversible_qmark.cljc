@@ -27,12 +27,12 @@
       false 'a-sym
       false "a string"
       false \a
-      false (object-array 3)
+      #?@(:squint [true] :default [false]) (object-array 3)
       #?(:cljs true :default false) (seq [1 2 3])
 
       ;; Basilisp does not currently implement sorted collections or array-map.
       #?@(:lpy []
           :default
           [false (array-map :a 1)
-           false (seq (sorted-map :a 1))
-           false (seq (sorted-set :a))]))))
+           #?@(:squint [true] :default [false]) (seq (sorted-map :a 1))
+           #?@(:squint [true] :default [false]) (seq (sorted-set :a))]))))

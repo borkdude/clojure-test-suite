@@ -65,6 +65,7 @@ clojure.core-test.ffirst
 clojure.core-test.find
 clojure.core-test.first
 clojure.core-test.float
+clojure.core-test.float-qmark
 clojure.core-test.fn-qmark
 clojure.core-test.fnext
 clojure.core-test.fnil
@@ -162,6 +163,7 @@ clojure.core-test.repeat
 clojure.core-test.repeatedly
 clojure.core-test.rest
 clojure.core-test.reverse
+clojure.core-test.reversible-qmark
 clojure.core-test.rseq
 clojure.core-test.run-bang
 clojure.core-test.second
