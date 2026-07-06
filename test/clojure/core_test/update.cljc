@@ -98,9 +98,11 @@
 
        ;; Throw when passing a val instead of function
        [{:k 5} :k 1]
-       #?@(:squint [] :default [[{:k 5} :k '()]
-                                [{:k 5} :k '()]
-                                [{:k 5} :k []]])
+       #?@(:squint [[{:k 5} :k '()]
+                    [{:k 5} :k '()]]
+           :default [[{:k 5} :k '()]
+                     [{:k 5} :k '()]
+                     [{:k 5} :k []]])
        [{:k 5} :k nil]
        #?@(:squint [] :default [[{:k 5} :k ""]])
 
