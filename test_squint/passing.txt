@@ -186,7 +186,6 @@ clojure.core-test.some-qmark
 clojure.core-test.sort
 clojure.core-test.sort-by
 clojure.core-test.sorted-qmark
-clojure.core-test.special-symbol-qmark
 clojure.core-test.star
 clojure.core-test.str
 clojure.core-test.string-qmark
