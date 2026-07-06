@@ -37,8 +37,7 @@
       #?(:cljr (is (p/thrown? ((juxt nil))))
          :cljs (is (p/thrown? ((juxt nil))))
          :clj  (is (p/thrown? ((juxt nil)))))
-      #?@(:squint  [(is (p/thrown? ((juxt 1))))]
-          :cljs    [(is (p/thrown? ((juxt (range)))))
+      #?@(:cljs    [(is (p/thrown? ((juxt (range)))))
                     (is (p/thrown? ((juxt 1))))]
           :default [(is (p/thrown? ((juxt (range)))))
                     (is (p/thrown? ((juxt 1))))]))))
