@@ -30,5 +30,5 @@
           [false (sorted-map :a 1)
            false (sorted-set :a)
            false (array-map :a 1)
-           false (seq (sorted-map :a 1))
+           #?@(:squint [true] :default [false]) (seq (sorted-map :a 1))
            #?@(:squint [true] :default [false]) (seq (sorted-set :a))]))))
