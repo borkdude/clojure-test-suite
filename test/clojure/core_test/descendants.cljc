@@ -67,8 +67,8 @@
             [(is (nil? (descendants TestDescendantsProtocol)))
              (is (p/thrown? (descendants python/object)))]
             :squint
-            [(is (nil? (descendants TestDescendantsProtocol)))
-             (is (nil? (descendants js/Object)))]
+            [(is (nil? (descendants TestDescendantsProtocol))) ; a squint protocol is not a constructor
+             (is (p/thrown? (descendants js/Object)))]
             :cljs
             [(is (p/thrown? (descendants TestDescendantsProtocol)))
              (is (p/thrown? (descendants js/Object)))]
@@ -118,7 +118,6 @@
 
       (testing "cannot get descendants by type inheritance, whether the tag is in h or not"
         (are [h] #?(:lpy     (p/thrown? (descendants h python/object))
-                    :squint  (nil? (descendants h js/Object))
                     :cljs    (p/thrown? (descendants h js/Object))
                     :default (p/thrown? (descendants h Object)))
                  ; tag in h
