@@ -69,7 +69,6 @@ clojure.core-test.float-qmark
 clojure.core-test.fn-qmark
 clojure.core-test.fnext
 clojure.core-test.fnil
-clojure.core-test.format
 clojure.core-test.get
 clojure.core-test.get-in
 clojure.core-test.group-by
@@ -197,7 +196,6 @@ clojure.core-test.take
 clojure.core-test.take-last
 clojure.core-test.take-nth
 clojure.core-test.take-while
-clojure.core-test.taps
 clojure.core-test.transient
 clojure.core-test.true-qmark
 clojure.core-test.underive
